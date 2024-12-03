@@ -64,9 +64,8 @@ function ToDoList(){
 
             <ul className="all-list-items">
                 {tasks.map((task,index) => 
-                    <li key={index} className="task"
-                    onClick={checked}>
-                        <span id="task-text">{task}</span>
+                    <li key={index} className="task">
+                        <span id="task-text" onClick={checked}>{task}</span>
 
                         <span id="task-btn">
                         <button 
