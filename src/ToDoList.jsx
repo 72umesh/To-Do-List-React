@@ -3,7 +3,10 @@ import Logo from "./assets/Logo.png"
 
 function ToDoList(){
 
-    const [tasks, setTask] = useState(["Walk 30 minutes", "Drink Water", "Read a book"]);
+    const [tasks, setTask] = useState([
+        {text: "Walk 30 minutes", completed: false},
+        {text: "Drink Water" ,completed: false}, 
+        {text: "Read a book", completed: true}]);
     const [newTask, setNewTask] = useState("");
 
     function handleInputChange(event){
@@ -11,7 +14,7 @@ function ToDoList(){
     }
     function addTask(){
         if(newTask.trim() !=="" ){
-            setTask(t => ([...t, newTask]))
+            setTask(t => ([...t, {text: newTask, completed:false}]))
             setNewTask("")
         }  
     }
@@ -38,10 +41,10 @@ function ToDoList(){
         }
     }
 
-    function checked(event){
-        setNewTask(event.target.classList.toggle('checked'));
-        setNewTask("")
-
+    function toggleChecked(index){
+        const updatedTask = [...tasks];
+        updatedTask[index].completed = !updatedTask[index].completed;
+        setTask(updatedTask);
     }
 
     return(
@@ -65,7 +68,8 @@ function ToDoList(){
             <ul className="all-list-items">
                 {tasks.map((task,index) => 
                     <li key={index} className="task">
-                        <span id="task-text" onClick={checked}>{task}</span>
+                        <span id="task-text" className={task.completed ? "checked" : ""}
+                        onClick={() => toggleChecked(index)}>{task.text}</span>
 
                         <span id="task-btn">
                         <button 

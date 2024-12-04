@@ -125,11 +125,14 @@ body{
 }
 @media (max-width:600px){
   .to-do-list{
-      width: 300px;
+      width:90%;
+      margin: 50px 0 50px;
   }
   .all-list-items{
       padding: 5px;
   }
-  
+  .add-btn{
+    padding: 10px 15px;
+  }
 
 }
